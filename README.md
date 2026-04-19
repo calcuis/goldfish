@@ -30,3 +30,39 @@ graph TD
     Agent --> Memory[Memory Manager: Context & Long-term Storage]
     Tools --> Env[Environments: Local, Docker, SSH, etc.]
 ```
+
+---
+
+### Core Components
+
+1.  **The Agent (`AIAgent`)**: The central intelligence. It manages the conversation loop, processes tool calls, and maintains the internal state.
+2.  **The Tool Registry**: A unified interface for all capabilities. Every tool (e.g., `terminal_tool.py`) registers itself, allowing the agent to discover and invoke them dynamically.
+3.  **The Gateway**: The bridge between the agent and the outside world. It adapts the agent's capabilities to various messaging protocols (Webhooks, Bot APIs).
+4.   **Skills & Plugins**: High-level abstractions built on top of tools. Skills allow the agent to perform complex, domain-specific tasks (e.g., `research-paper-writing`).
+
+---
+
+## 📂 Project Structure (golden agent)
+
+```text
+.
+├── gold/                # The core engine
+│   ├── agent/           # Agent internals (Prompting, Context, Memory)
+│   ├── gold_cli/        # CLI subcommands, themes (skins), and setup
+│   ├── tools/           # Implementation of all interactive tools
+│   ├── gateway/         # Platform adapters (Telegram, Discord, etc.)
+│   ├── skills/          # Registry of extensible agent capabilities
+│   ├── plugins/         # Modular extensions for memory/context
+│   └── environments/    # Execution backends (Docker, SSH, etc.)
+├── src/                 # Platform-specific implementations (e.g., IntelliJ plugins)
+└── ...
+```
+
+---
+
+## 🛠️ Workflow
+
+1.  **Initialize**: Start the agent via CLI or connect to an existing session via a Gateway.
+2.  **Instruct**: Provide a task, whether it's a simple question or a complex coding requirement.
+3.  **Execute**: The agent identifies needed **Tools** and **Skills**, plans a trajectory, and executes operations (like running terminal commands or searching the web).
+4.  **Learn**: The agent updates its memory and trajectory, refining its approach for the next iteration.
