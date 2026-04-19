@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.github.gguf"
-version = "0.0.2"
+version = "0.0.3"
 
 kotlin {
     jvmToolchain(17)
