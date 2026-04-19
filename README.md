@@ -1,6 +1,6 @@
 # goldfish 🐠
 
-Goldfish is an advanced, evolving AI agent designed to learn from every interaction. Unlike traditional static agents, it builds a persistent understanding of your preferences, picks up new skills on the fly, and expands its capabilities through a modular ecosystem of tools and skills.
+Goldfish is an advanced, evolving AI agent designed to learn from every interaction. Unlike traditional static agents, it builds a persistent understanding of your preferences, picks up new skills on the fly, and expands its capabilities through a modular ecosystem of tools and skills. Goldfish makes coding task handy, debugging easy, reviewing large codebase like eating a small piece of pizza.
 
 ![screenshot](https://raw.githubusercontent.com/calcuis/goldfish/master/demo.gif)
 
