@@ -6,6 +6,7 @@ import com.intellij.notification.Notifications
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.ide.CopyPasteManager
 import com.intellij.openapi.project.Project
+import com.intellij.openapi.util.Disposer
 import com.intellij.openapi.util.SystemInfo
 import org.jetbrains.plugins.terminal.ShellTerminalWidget
 import org.jetbrains.plugins.terminal.TerminalView
@@ -49,10 +50,10 @@ object TerminalHelper {
             runCatching {
                 val connector = widget.ttyConnector
                 if (connector != null && connector.isConnected) {
-                    // Write raw bytes directly to the process stdin (works for interactive CLIs)
                     connector.write(text.toByteArray(Charsets.UTF_8))
                 } else {
-                    widget.sendTextToTerminal(text, false)
+                    CopyPasteManager.getInstance().setContents(StringSelection(text))
+                    notify(project, "Terminal not ready — text copied to clipboard.", NotificationType.WARNING)
                 }
             }.onFailure {
                 CopyPasteManager.getInstance().setContents(StringSelection(text))
@@ -63,7 +64,7 @@ object TerminalHelper {
 
     private fun aliveWidget(): ShellTerminalWidget? {
         val w = sharedWidget ?: return null
-        return if (w.isDisposed) { sharedWidget = null; null } else w
+        return if (Disposer.isDisposed(w)) { sharedWidget = null; null } else w
     }
 
     private fun wslWrap(command: String): String {
