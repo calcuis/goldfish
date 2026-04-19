@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.github.gguf"
-version = "0.0.1"
+version = "0.0.2"
 
 kotlin {
     jvmToolchain(17)
@@ -22,7 +22,7 @@ intellijPlatform {
     pluginConfiguration {
         ideaVersion {
             sinceBuild = "243"
-            untilBuild = "251.*"
+            untilBuild = "261.*"
         }
     }
     publishing {
