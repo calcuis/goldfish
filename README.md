@@ -66,3 +66,5 @@ graph TD
 2.  **Instruct**: Provide a task, whether it's a simple question or a complex coding requirement.
 3.  **Execute**: The agent identifies needed **Tools** and **Skills**, plans a trajectory, and executes operations (like running terminal commands or searching the web).
 4.  **Learn**: The agent updates its memory and trajectory, refining its approach for the next iteration.
+
+![screenshot](https://raw.githubusercontent.com/calcuis/goldfish/master/durian.jpg)
