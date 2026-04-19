@@ -1,0 +1,70 @@
+<idea-plugin>
+    <id>com.github.gguf.wrap</id>
+    <name>Wrap</name>
+    <version>0.0.1</version>
+    <vendor url="https://github.com/mochiyaki/wrap">gguf</vendor>
+
+    <description><![CDATA[
+        <p>Wrap is a launcher for AI coding assistants and custom shell commands.</p>
+        <p>
+            Configure a <code>wrapper.json</code> file in your project root to define
+            categories of commands and prompts. Access them instantly from the status bar
+            or via <b>Tools → Wrap: Show Menu</b> to launch AI tools (Claude, Codex, Gemini,
+            Coder, Hermes, etc.) in integrated terminals, or send predefined prompts to
+            already-running AI sessions.
+        </p>
+        <h3>Features</h3>
+        <ul>
+            <li>Two-level popup menu: category → action</li>
+            <li>Run shell commands in a dedicated integrated terminal tab</li>
+            <li>Send prompt text directly to an active terminal (for interactive AI CLIs)</li>
+            <li>WSL (Windows Subsystem for Linux) support per-command</li>
+            <li>Configurable <code>wrapper.json</code> path via <b>Settings → Tools → Wrap</b></li>
+        </ul>
+        <h3>Quick Start</h3>
+        <p>Create <code>wrapper.json</code> in your project root:</p>
+        <pre>
+[
+  {
+    "useWsl": ["Claude", "Codex"],
+    "Command": [{ "Claude": "claude", "Codex": "codex" }],
+    "Content":  [{ "Git Push": "Please commit and push all changes to origin/main" }]
+  }
+]
+        </pre>
+        <p>Then click <b>Wrap</b> in the status bar to get started.</p>
+    ]]></description>
+
+    <change-notes><![CDATA[
+        <ul>
+            <li><b>0.0.1</b> — Initial release, ported from the VSCode extension.</li>
+        </ul>
+    ]]></change-notes>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.plugins.terminal</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService
+            serviceImplementation="com.github.gguf.wrap.WrapSettingsState"/>
+        <applicationConfigurable
+            instance="com.github.gguf.wrap.WrapSettingsConfigurable"
+            displayName="Wrap"
+            id="com.github.gguf.wrap.settings"
+            parentId="tools"/>
+        <statusBarWidgetFactory
+            implementation="com.github.gguf.wrap.WrapStatusBarWidgetFactory"
+            id="WrapStatusBarWidget"
+            order="last"/>
+    </extensions>
+
+    <actions>
+        <action
+            id="Wrap.ShowMenu"
+            class="com.github.gguf.wrap.ShowWrapMenuAction"
+            text="Wrap: Show Menu"
+            description="Show the Wrap launcher menu">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>
