@@ -1,7 +1,6 @@
 plugins {
-    id("java")
-    id("org.jetbrains.kotlin.jvm") version "1.9.25"
-    id("org.jetbrains.intellij.platform") version "2.2.1"
+    id("org.jetbrains.kotlin.jvm")
+    id("org.jetbrains.intellij.platform")
 }
 
 group = "com.github.gguf"
@@ -11,17 +10,10 @@ kotlin {
     jvmToolchain(17)
 }
 
-repositories {
-    mavenCentral()
-    intellijPlatform {
-        defaultRepositories()
-    }
-}
-
 dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
     intellijPlatform {
-        intellijIdeaCommunity("2024.1.7")
+        intellijIdeaCommunity("2024.3.6")
         bundledPlugin("org.jetbrains.plugins.terminal")
     }
 }
@@ -29,7 +21,7 @@ dependencies {
 intellijPlatform {
     pluginConfiguration {
         ideaVersion {
-            sinceBuild = "241"
+            sinceBuild = "243"
             untilBuild = "251.*"
         }
     }
