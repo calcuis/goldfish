@@ -19,12 +19,12 @@
 
 ## 🏗️ Architecture Overview
 
-The Golden Agent architecture is built on a decoupled, modular design:
+The `goldfish` architecture is built on a decoupled, modular design:
 
 ```mermaid
 graph TD
     User[User Interface: CLI / Telegram / Discord] --> Gateway[Gateway: Message Dispatch & Session Management]
-    Gateway --> Agent[AIAgent: Core Loop & Reasoning]
+    Gateway --> Agent[AI Agent: Core Loop & Reasoning]
     Agent --> Tools[Tool Registry: Terminal, Web, File, etc.]
     Agent --> Skills[Skill Hub: Specialized Modules]
     Agent --> Memory[Memory Manager: Context & Long-term Storage]
@@ -35,7 +35,7 @@ graph TD
 
 ### Core Components
 
-1.  **The Agent (`AIAgent`)**: The central intelligence. It manages the conversation loop, processes tool calls, and maintains the internal state.
+1.  **The Agent (`AI Agent`)**: The central intelligence. It manages the conversation loop, processes tool calls, and maintains the internal state.
 2.  **The Tool Registry**: A unified interface for all capabilities. Every tool (e.g., `terminal_tool.py`) registers itself, allowing the agent to discover and invoke them dynamically.
 3.  **The Gateway**: The bridge between the agent and the outside world. It adapts the agent's capabilities to various messaging protocols (Webhooks, Bot APIs).
 4.   **Skills & Plugins**: High-level abstractions built on top of tools. Skills allow the agent to perform complex, domain-specific tasks (e.g., `research-paper-writing`).
@@ -46,7 +46,7 @@ graph TD
 
 ```text
 .
-├── gold/                # The core engine
+├── goldfish/            # The core engine (please refer to the core repo)
 │   ├── agent/           # Agent internals (Prompting, Context, Memory)
 │   ├── gold_cli/        # CLI subcommands, themes (skins), and setup
 │   ├── tools/           # Implementation of all interactive tools
