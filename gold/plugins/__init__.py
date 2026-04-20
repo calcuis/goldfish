@@ -1,1 +1,0 @@
-# Gold plugins package
