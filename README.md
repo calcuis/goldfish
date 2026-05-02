@@ -58,6 +58,9 @@ graph TD
 └── ...
 ```
 
+![screenshot](https://raw.githubusercontent.com/calcuis/goldfish/master/demo2.gif)
+*example model connected in demo can be found [here](https://huggingface.co/callgg/minimax-m2.7)
+
 ---
 
 ## 🛠️ Workflow
